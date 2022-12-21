@@ -14,7 +14,7 @@ pub enum Endpoint {
     // It takes a single String field representing the tweet ID.
     GetTweet(String),
 
-
+    GetTweets(String),
     // The GetFollows variant represents the endpoint for retrieving a list of users that a given user is following.
     // It takes a single String field representing the user ID.
     GetFollows(String),

@@ -12,5 +12,6 @@ pub enum ResultType {
     Tweet(Tweet),
     Follows(Vec<Follow>),
     Comments(Vec<Comment>),
+    Tweets(Vec<Tweet>),
     Success,
 }
