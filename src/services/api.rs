@@ -47,7 +47,30 @@ impl TwitterLikeAPI {
                 Ok(ResultType::Follows(follows))
             },
 
-          
+            // Returns all comments on the tweet with the given ID.
+            Endpoint::GetComments(tid) => {
+                let comments = self.comments
+                    .values()
+                    .filter(|comment| comment.tweet_id == tid)
+                    .cloned()
+                    .collect();
+                Ok(ResultType::Comments(comments))
+            },
+               // Returns the user with the given ID, if it exists.
+               Endpoint::GetUser(uid) => {
+                if let Some(user) = self.users.get(&uid) {
+                    Ok(ResultType::User(user.clone()))
+                } else {
+                    Err(format!("User with ID {} not found", uid))
+                }
+            },
+
+            // Creates a new user.
+            Endpoint::CreateUser(user) => {
+                self.users.insert(user.clone().uid, user.clone());
+                Ok(ResultType::Success)
+            }
+            
         }
     }
 }
