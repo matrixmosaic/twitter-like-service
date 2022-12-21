@@ -24,7 +24,31 @@ impl TwitterLikeAPI {
 
     // Handles the given endpoint by interacting with the data model and returning the result.
     pub fn handle_endpoint(&mut self, endpoint: Endpoint) -> Result<ResultType, String> {
-      
+        match endpoint {
+
+          
+
+            // Returns the tweet with the given ID, if it exists.
+            Endpoint::GetTweet(tid) => {
+                if let Some(tweet) = self.tweets.get(&tid) {
+                    Ok(ResultType::Tweet(tweet.clone()))
+                } else {
+                    Err(format!("Tweet with ID {} not found", tid))
+                }
+            },
+
+            // Returns all follows that involve the given user ID.
+            Endpoint::GetFollows(uid) => {
+                let follows = self.follows
+                    .values()
+                    .filter(|follow| follow.follower_id == uid || follow.followee_id == uid)
+                    .cloned()
+                    .collect();
+                Ok(ResultType::Follows(follows))
+            },
+
+          
+        }
     }
 }
 
