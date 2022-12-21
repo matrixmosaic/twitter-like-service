@@ -70,7 +70,14 @@ impl TwitterLikeAPI {
                 self.users.insert(user.clone().uid, user.clone());
                 Ok(ResultType::Success)
             }
-            
+            Endpoint::CreateTweet { user_id, body } => todo!(),
+            Endpoint::FollowUser { follower_id, followee_id } => todo!(),
+            Endpoint::UnfollowUser { follower_id, followee_id } => todo!(),
+            Endpoint::CreateComment { tweet_id, user_id, body } => todo!(),
+            Endpoint::DeleteComment(_) => todo!(),
+            Endpoint::UpdateComment { id, body } => todo!(),
+            Endpoint::DeleteTweet(_) => todo!(),
+            Endpoint::UpdateTweet { id, body } => todo!(),
         }
     }
 }
