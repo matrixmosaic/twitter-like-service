@@ -2,10 +2,12 @@
 //mod crate::types;
 use std::collections::HashMap;
 use crate::models::models::{User, Tweet, Follow, Comment};
-
+use uuid::Uuid;
 use crate::types;
 use crate::{types::result::ResultType};
 use types::end_points::Endpoint;
+use chrono::{Utc, NaiveDateTime};
+
 
 // Define a struct to hold the state of the API
 pub struct TwitterLikeAPI {
@@ -70,7 +72,24 @@ impl TwitterLikeAPI {
                 self.users.insert(user.clone().uid, user.clone());
                 Ok(ResultType::Success)
             }
-            Endpoint::CreateTweet { user_id, body } => todo!(),
+
+
+            Endpoint::CreateTweet { user_id, body } => {
+
+                let uuid = Uuid::new_v4();
+                let uuid_string = uuid.to_string();
+
+                let now = Utc::now();
+                let naive_now = now.naive_utc();
+
+                self.tweets.insert(uuid, Tweet {
+                    tweet_id: uuid_string,
+                      user_id,
+                    body,
+                    created_at: naive_now,
+                });
+                Ok(ResultType::Success)
+            },
             Endpoint::FollowUser { follower_id, followee_id } => todo!(),
             Endpoint::UnfollowUser { follower_id, followee_id } => todo!(),
             Endpoint::CreateComment { tweet_id, user_id, body } => todo!(),
