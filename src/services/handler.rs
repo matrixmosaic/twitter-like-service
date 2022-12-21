@@ -171,7 +171,7 @@ pub async fn get_feed(
 
     // Call the `handle_endpoint` method on the `api` object, passing it the `Endpoint::GetTweet` variant
     // with the user ID as an argument.
-    match api.handle_endpoint(Endpoint::GetTweet(uid)) {
+    match api.handle_endpoint(Endpoint::GetTweets(uid)) {
     
         // If the call is successful and returns a ResultType::Tweets variant, we return an HTTP 200 OK response
         // with the tweet data serialized as the response body in JSON format.

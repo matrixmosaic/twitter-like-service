@@ -17,4 +17,5 @@ failure = "0.1.8"
 serde = { version = "1.0.150", features = ["derive"] }
 postgres-types = {version = "0.2.4", features = ["derive"]}
 bigdecimal = "0.3.0"
-uuid = "1.2.2"
+
+uuid = { version = "1.2.2", features = ["serde", "v4"] }

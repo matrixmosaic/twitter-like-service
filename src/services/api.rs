@@ -39,6 +39,23 @@ impl TwitterLikeAPI {
                 }
             },
 
+       // This match arm handles the "GetTweets" variant of the "Endpoint" enum.
+       // The `uid` parameter represents the user ID of the user whose tweets we want to retrieve.
+        Endpoint::GetTweets(uid) => {
+            // First, we retrieve all tweets in the `self.tweets` map.
+            // Then, we use the `filter` method to keep only those tweets that were made by the user with the specified `uid`.
+            // The `cloned` method creates a new collection of the same type as the original, but with all elements cloned.
+            // Finally, we use the `collect` method to turn the filtered, cloned tweet collection into a new collection.
+            let tweets = self.tweets
+                .values()
+                .filter(|tweet| tweet.user_id == uid)
+                .cloned()
+                .collect();
+
+            // We return the collected tweets wrapped in the "Tweets" variant of the "ResultType" enum.
+            Ok(ResultType::Tweets(tweets))
+},
+
             // Returns all follows that involve the given user ID.
             Endpoint::GetFollows(uid) => {
                 let follows = self.follows
@@ -67,30 +84,70 @@ impl TwitterLikeAPI {
                 }
             },
 
-            // Creates a new user.
-            Endpoint::CreateUser(user) => {
-                self.users.insert(user.clone().uid, user.clone());
-                Ok(ResultType::Success)
-            }
+          // This is a variant of the `Endpoint` enum, representing a request to create a new user.
+        Endpoint::CreateUser(user) => {
+           // Generate a new random UUID.
+           let uuid = Uuid::new_v4();
+           // Clone the `user` struct to create a new mutable `new_user` struct.
+           let mut new_user = user.clone();
+           // Convert the UUID to a string.
+           let uuid_str = uuid.to_string();
+           // Set the `uid` field of the `new_user` struct to the generated UUID.
+           new_user.uid = uuid_str.clone();
+
+          // Insert the `new_user` struct into the map of users using the generated UUID as the key.
+           self.users.insert(uuid_str, new_user.clone());
+          // Return a `ResultType::Success` value to indicate that the request was successful.
+          Ok(ResultType::Success)
+}
 
 
-            Endpoint::CreateTweet { user_id, body } => {
 
-                let uuid = Uuid::new_v4();
-                let uuid_string = uuid.to_string();
 
-                let now = Utc::now();
-                let naive_now = now.naive_utc();
+        // This is a variant of the `Endpoint` enum, representing a request to create a new tweet.
+         Endpoint::CreateTweet { user_id, body } => {
+            // Generate a new random UUID.
+            let uuid = Uuid::new_v4();
+            // Convert the UUID to a string.
+            let uuid_string = uuid.to_string();
 
-                self.tweets.insert(uuid, Tweet {
-                    tweet_id: uuid_string,
-                      user_id,
-                    body,
-                    created_at: naive_now,
-                });
-                Ok(ResultType::Success)
-            },
-            Endpoint::FollowUser { follower_id, followee_id } => todo!(),
+            // Get the current date and time in the UTC time zone.
+             let now = Utc::now();
+            // Convert the date and time to a `NaiveDateTime` object.
+             let naive_now = now.naive_utc();
+
+            // Create a new `Tweet` struct using the provided `user_id` and `body` values,
+            // the generated UUID, and the current date and time and insert into the map.
+            self.tweets.insert(uuid_string.clone(), Tweet {
+            tweet_id: uuid_string,
+            user_id,
+            body,
+            created_at: naive_now,
+    });
+    // Return a `ResultType::Success` value to indicate that the request was successful.
+    Ok(ResultType::Success)
+},
+
+
+          // This is a variant of the `Endpoint` enum, representing a request to follow a user.
+     Endpoint::FollowUser { follower_id, followee_id } => {
+          // Get the current date and time in the UTC time zone.
+          let now = Utc::now();
+         // Convert the date and time to a `NaiveDateTime` object.
+          let naive_now = now.naive_utc();
+
+          // Create a new `Follow` struct using the provided `follower_id` and `followee_id` values,
+          // and the current date and time nd insert into the map.
+          self.follows.insert((follower_id.clone(), followee_id.clone()), Follow {
+             follower_id,
+             followee_id, 
+              created_at: naive_now,
+    });
+    // Return a `ResultType::Success` value to indicate that the request was successful.
+    Ok(ResultType::Success)
+},
+
+
             Endpoint::UnfollowUser { follower_id, followee_id } => todo!(),
             Endpoint::CreateComment { tweet_id, user_id, body } => todo!(),
             Endpoint::DeleteComment(_) => todo!(),
