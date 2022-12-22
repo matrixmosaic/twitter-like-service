@@ -14,13 +14,17 @@ The Twitter-like application system architecture exposes a set of APIs(RESTful-l
 In our Twitter-like service , for the MVP purposes we have implemented four basic entities.
 
 
-#### User: Each user has a unique account and can create tweets, follow other users, and be followed by other users.
+#### User: 
+Each user has a unique account and can create tweets, follow other users, and be followed by other users.
 
-#### Tweet: Each tweet is created by a single user and can be commented and retweeted by multiple users.
+#### Tweet:
+ Each tweet is created by a single user and can be commented and retweeted by multiple users.
 
-####Follow : A user can follow multiple other users, and each user can have multiple followers. This is a many-to-many (M:M) relationship.
+#### Follow : 
+ A user can follow multiple other users, and each user can have multiple followers. This is a many-to-many (M:M) relationship.
 
-#### Comment: A tweet can be commented/liked by multiple users, and each user can comment/like multiple tweets. This is also a many-to-many (M:M) relationship.
+#### Comment:
+ A tweet can be commented/liked by multiple users, and each user can comment/like multiple tweets. This is also a many-to-many (M:M) relationship.
 
 Generally the entity relationship diagram below shows the design of AN MVP twItter-like-service database (click to open in new tab and expand for clarity).
 
