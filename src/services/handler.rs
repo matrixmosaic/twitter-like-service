@@ -280,7 +280,7 @@ pub async fn create_tweet(
     // Check if the tweet string has more than 128 characters
 if tweet.body.chars().count() > 128 {
     // If the tweet is too long, return an error indicating that the tweet must be 128 characters or less
-    return HttpResponse::InternalServerError().body("Tweet must be 128 characters length or less"); 
+    return HttpResponse::BadRequest().body("Tweet must be 128 characters length or less"); 
 
 }
  
@@ -299,6 +299,8 @@ if tweet.body.chars().count() > 128 {
 
     // If the call returns an error, we return an HTTP 500 Internal Server Error response with the error message
     // as the response body.
+
+    
     Err(error) => HttpResponse::InternalServerError().body(error),
     }
 }
