@@ -2,7 +2,7 @@ use std::sync::{Arc, Mutex};
 
 //the handler functions for each endpoint. These functions will use the TwitterLikeAPI struct to handle the request and return a response.
 use actix_web::{  web,  HttpResponse};
-use crate::{services::api::TwitterLikeAPI, types::{end_points::Endpoint, result::ResultType}, models::models::{User, Follow, Tweet, Comment}};
+use crate::{services::api::TwitterLikeAPI, types::{end_points::Endpoint, result::ResultType}, models::models::{Follow, Tweet, Comment}};
 
 
 pub struct TwitterLikeAPIHandler {
