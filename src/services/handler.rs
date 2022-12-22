@@ -276,6 +276,13 @@ pub async fn create_tweet(
     // The first step is to extract the current user's ID from the path object and the tweet data from the tweet object.
     let uid = path.into_inner();
     let tweet = tweet.into_inner();
+
+    // Check if the tweet string has more than 128 characters
+if tweet.body.chars().count() > 128 {
+    // If the tweet is too long, return an error indicating that the tweet must be 128 characters or less
+    return HttpResponse::InternalServerError().body("Tweet must be 128 characters length or less"); 
+
+}
  
    // Next, we call the handle_endpoint method on the api_handler object, passing in an Endpoint::CreateTweet variant
    // with the current user's ID and the tweet content as its arguments. This will trigger the appropriate
