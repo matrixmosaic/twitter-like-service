@@ -6,7 +6,7 @@ use uuid::Uuid;
 use crate::types;
 use crate::{types::result::ResultType};
 use types::end_points::Endpoint;
-use chrono::{Utc, NaiveDateTime};
+use chrono::{Utc};
 
 
 // Define a struct to hold the state of the API
@@ -85,18 +85,17 @@ impl TwitterLikeAPI {
             },
 
           // This is a variant of the `Endpoint` enum, representing a request to create a new user.
-        Endpoint::CreateUser(user) => {
-           // Generate a new random UUID.
-           let uuid = Uuid::new_v4();
-           // Clone the `user` struct to create a new mutable `new_user` struct.
-           let mut new_user = user.clone();
-           // Convert the UUID to a string.
-           let uuid_str = uuid.to_string();
-           // Set the `uid` field of the `new_user` struct to the generated UUID.
-           new_user.uid = uuid_str.clone();
+        Endpoint::CreateUser(uid) => {
+          
 
           // Insert the `new_user` struct into the map of users using the generated UUID as the key.
-           self.users.insert(uuid_str, new_user.clone());
+           self.users.insert(uid.clone(), User { uid, email: "".to_string(), first_name:  "".to_string(), 
+           last_name:  "".to_string(), 
+           second_name:  "".to_string(), 
+           user_name:  "".to_string(), 
+           password:  "".to_string(), 
+           phone:  "".to_string(),
+            gender:  "".to_string() });
           // Return a `ResultType::Success` value to indicate that the request was successful.
           Ok(ResultType::Success)
 }

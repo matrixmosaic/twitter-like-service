@@ -2,9 +2,8 @@
 This file contains the struct for the Twitter like Api Models. The #[derive(...)] attribute on each model automatically implements certain traits for the struct, including Debug, Clone, PartialEq, Eq, Serialize, and Deserialize, 
 which allows the struct to be printed, cloned, compared for equality, serialized (converted to a byte representation), and deserialized (converted from a byte representation) as needed.
 */
-use chrono::{NaiveDateTime, Utc};
-use serde::{Serialize, Serializer,Deserialize};
-use uuid::Uuid;
+use chrono::{NaiveDateTime};
+use serde::{Serialize,Deserialize};
 
 // This struct represents a User in the system.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

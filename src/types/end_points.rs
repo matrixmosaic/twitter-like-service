@@ -51,6 +51,6 @@ pub enum Endpoint {
         id: String,
        body: String,
     },
-    CreateUser(User),
+    CreateUser(String),
 
 }
