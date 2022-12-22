@@ -44,7 +44,7 @@ pub mod service_config{
         );
 
         cfg.service(
-            web::resource("/user/:uid/feed")
+            web::resource("/user/{uid}/feed")
                 .route(web::get().to(get_feed)),
                
         );
