@@ -10,6 +10,25 @@ The Twitter-like service is a web-based mvp application that allows users to cre
 
 The Twitter-like application system architecture exposes a set of APIs(RESTful-like JSON API endpoints) that allow developers to access the functionality and data of the service. The APIs are designed to be easy to use and allow to Create an user, Create a tweet, Get a user tweet feed, Follow and Unfollow another user.
 
+## Data Model
+In our Twitter-like service , for the MVP purposes we have implemented four basic entities.
+
+
+#### User: Each user has a unique account and can create tweets, follow other users, and be followed by other users.
+
+#### Tweet: Each tweet is created by a single user and can be commented and retweeted by multiple users.
+
+####Follow : A user can follow multiple other users, and each user can have multiple followers. This is a many-to-many (M:M) relationship.
+
+#### Comment: A tweet can be commented/liked by multiple users, and each user can comment/like multiple tweets. This is also a many-to-many (M:M) relationship.
+
+Generally the entity relationship diagram below shows the design of AN MVP twItter-like-service database (click to open in new tab and expand for clarity).
+
+
+![MVP Schema](https://architecture-design-diagrams.s3.amazonaws.com/db.PNG) 
+
+
+
 ## API Endpoint
 The APIs allows to Create an user, Create a tweet, Get a user tweet feed, Follow and Unfollow another user. All API requests should be made to the following endpoint:
 
