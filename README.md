@@ -14,7 +14,7 @@ The Twitter-like application system architecture exposes a set of APIs(RESTful-l
 
 The System Architeture Document for this application can be found at:
 
-![Twitter Like Service System Architeture Document](https://documents-geobude.s3.amazonaws.com/twitter-like-service-architecture-document.pdf) 
+[Twitter Like Service System Architeture Document](https://documents-geobude.s3.amazonaws.com/twitter-like-service-architecture-document.pdf) 
 
 ## Building And Running The Application
 
