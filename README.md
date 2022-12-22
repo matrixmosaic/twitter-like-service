@@ -10,6 +10,12 @@ The Twitter-like service is a web-based mvp application that allows users to cre
 
 The Twitter-like application system architecture exposes a set of APIs(RESTful-like JSON API endpoints) that allow developers to access the functionality and data of the service. The APIs are designed to be easy to use and allow to Create an user, Create a tweet, Get a user tweet feed, Follow and Unfollow another user.
 
+## Documentation
+
+The System Architeture Document for this application can be found at:
+
+![Twitter Like Service System Architeture Document](https://documents-geobude.s3.amazonaws.com/twitter-like-service-architecture-document.pdf) 
+
 ## Building And Running The Application
 
 ### Building And Running The Application( Without a container ).
@@ -21,7 +27,7 @@ The Twitter-like application system architecture exposes a set of APIs(RESTful-l
 2.  Once Rust is  installed, navigate inside the  project folder( default folder is twitter-like-service )  
 3.  You can build the project using the following command:
    
-   `cargo build`
+     `cargo build`
 
 This will compile the project and create an executable file in the `target/debug` directory.
 
