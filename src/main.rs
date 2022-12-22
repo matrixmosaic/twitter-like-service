@@ -5,6 +5,7 @@ mod types;
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
+use actix_web::web::Data;
 use services::{handler::TwitterLikeAPIHandler,config::service_config, api::TwitterLikeAPI};
 use actix_web::{App, HttpServer,};
 
@@ -34,7 +35,7 @@ let api = Arc::new(Mutex::new(data));
     HttpServer::new(move || {
         App::new()
             // passing in a clone of the "api" variable as an argument
-            .app_data(TwitterLikeAPIHandler { api: api.clone() })
+            .app_data(Data::new(TwitterLikeAPIHandler { api: api.clone() }))
 
             // Calls the "configure" function in the Services module, passing in the app instance
             .configure(service_config::configure)

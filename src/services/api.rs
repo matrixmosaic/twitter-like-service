@@ -6,7 +6,7 @@ use uuid::Uuid;
 use crate::types;
 use crate::{types::result::ResultType};
 use types::end_points::Endpoint;
-use chrono::{Utc, NaiveDateTime};
+use chrono::{Utc};
 
 
 // Define a struct to hold the state of the API
@@ -86,17 +86,10 @@ impl TwitterLikeAPI {
 
           // This is a variant of the `Endpoint` enum, representing a request to create a new user.
         Endpoint::CreateUser(user) => {
-           // Generate a new random UUID.
-           let uuid = Uuid::new_v4();
-           // Clone the `user` struct to create a new mutable `new_user` struct.
-           let mut new_user = user.clone();
-           // Convert the UUID to a string.
-           let uuid_str = uuid.to_string();
-           // Set the `uid` field of the `new_user` struct to the generated UUID.
-           new_user.uid = uuid_str.clone();
+          
 
           // Insert the `new_user` struct into the map of users using the generated UUID as the key.
-           self.users.insert(uuid_str, new_user.clone());
+           self.users.insert(user.uid.clone(),user);
           // Return a `ResultType::Success` value to indicate that the request was successful.
           Ok(ResultType::Success)
 }
@@ -119,10 +112,10 @@ impl TwitterLikeAPI {
             // Create a new `Tweet` struct using the provided `user_id` and `body` values,
             // the generated UUID, and the current date and time and insert into the map.
             self.tweets.insert(uuid_string.clone(), Tweet {
-            tweet_id: uuid_string,
+            tweet_id: Some(uuid_string),
             user_id,
             body,
-            created_at: naive_now,
+           created_at: Some(naive_now),
     });
     // Return a `ResultType::Success` value to indicate that the request was successful.
     Ok(ResultType::Success)
@@ -141,7 +134,7 @@ impl TwitterLikeAPI {
           self.follows.insert((follower_id.clone(), followee_id.clone()), Follow {
              follower_id,
              followee_id, 
-              created_at: naive_now,
+              created_at: Some(naive_now),
     });
     // Return a `ResultType::Success` value to indicate that the request was successful.
     Ok(ResultType::Success)
