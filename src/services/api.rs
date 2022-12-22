@@ -85,17 +85,11 @@ impl TwitterLikeAPI {
             },
 
           // This is a variant of the `Endpoint` enum, representing a request to create a new user.
-        Endpoint::CreateUser(uid) => {
+        Endpoint::CreateUser(user) => {
           
 
           // Insert the `new_user` struct into the map of users using the generated UUID as the key.
-           self.users.insert(uid.clone(), User { uid, email: "".to_string(), first_name:  "".to_string(), 
-           last_name:  "".to_string(), 
-           second_name:  "".to_string(), 
-           user_name:  "".to_string(), 
-           password:  "".to_string(), 
-           phone:  "".to_string(),
-            gender:  "".to_string() });
+           self.users.insert(user.uid.clone(),user);
           // Return a `ResultType::Success` value to indicate that the request was successful.
           Ok(ResultType::Success)
 }

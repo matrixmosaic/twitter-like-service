@@ -2,7 +2,7 @@ use std::sync::{Arc, Mutex};
 
 //the handler functions for each endpoint. These functions will use the TwitterLikeAPI struct to handle the request and return a response.
 use actix_web::{  web,  HttpResponse};
-use crate::{services::api::TwitterLikeAPI, types::{end_points::Endpoint, result::ResultType}, models::models::{Follow, Tweet, Comment}};
+use crate::{services::api::TwitterLikeAPI, types::{end_points::Endpoint, result::ResultType}, models::models::{Follow, Tweet, Comment, User}};
 
 
 pub struct TwitterLikeAPIHandler {
@@ -109,16 +109,14 @@ pub async fn create_user(
     // Takes in an instance of the TwitterLikeAPI as a data object, accessed through the web crate
     api_handler: web::Data<TwitterLikeAPIHandler>,
     // Takes in a JSON object representing a User struct, accessed through the web crate
-    path: web::Path<String>,
+    user: web::Json<User>,
 ) -> HttpResponse {
-
-      // The first step is to extract the user ID from the path object.
-      let uid = path.into_inner();
+    let new_user: User = user.into_inner();
     // Match statement to handle the result of calling the "handle_endpoint" function with the endpoint
     // "Endpoint::CreateUser" and the user data as arguments
     let mut api = api_handler.api.lock().unwrap();
-
-      match api.handle_endpoint(Endpoint::CreateUser(uid)) {
+    
+      match api.handle_endpoint(Endpoint::CreateUser(new_user)) {
         // If the result is Ok(ResultType::Success), return an HTTP OK response
         Ok(_) => HttpResponse::Ok().into(),
         // If the result is an Err variant, return an HTTP Internal Server Error response with the error message as the body

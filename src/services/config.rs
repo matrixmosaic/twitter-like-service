@@ -12,7 +12,7 @@ pub mod service_config{
 
      
         cfg.service(
-            web::resource("/users/{uid}")
+            web::resource("/user/{uid}")
                 .route(web::get().to(get_user))
                 .route(web::post().to(create_user)),
         );

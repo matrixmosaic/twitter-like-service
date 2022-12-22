@@ -1,3 +1,5 @@
+use crate::models::models::User;
+
 
 // Endpoint is an enum that represents the different endpoints or API functions that the Twitter-like service supports.
 // Each variant of the enum corresponds to a different endpoint and may contain additional data fields.
@@ -48,6 +50,6 @@ pub enum Endpoint {
         id: String,
        body: String,
     },
-    CreateUser(String),
+    CreateUser(User),
 
 }
