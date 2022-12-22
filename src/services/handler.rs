@@ -57,7 +57,7 @@ pub  async fn get_tweet(
 // The function returns a HttpResponse object indicating the result of the request.
     pub async fn get_comments(
         api_handler: web::Data<TwitterLikeAPIHandler>,
-        path: web::Path<(String)>,
+        path: web::Path<String>,
     ) -> HttpResponse {
 
         // The first step is to extract the tweet ID from the path object.
@@ -91,7 +91,7 @@ pub  async fn get_tweet(
     // The function returns a HttpResponse object indicating the result of the request.
     pub async fn get_user(
         api_handler: web::Data<TwitterLikeAPIHandler>,
-        path: web::Path<(String)>,
+        path: web::Path<String>,
     ) -> HttpResponse {
         let uid = path.into_inner();
         let mut api = api_handler.api.lock().unwrap();
@@ -129,7 +129,7 @@ pub async fn create_user(
 
 pub async fn get_follows(
     api_handler: web::Data<TwitterLikeAPIHandler>,
-    path: web::Path<(String)>,
+    path: web::Path<String>,
 ) -> HttpResponse {
 
     // The first step is to extract the user ID from the path object.
@@ -230,7 +230,7 @@ pub async fn follow_user(
 // The function returns a HttpResponse object indicating the result of the request.
 pub async fn unfollow_user(
     api_handler: web::Data<TwitterLikeAPIHandler>,
-    path: web::Path<(String)>,
+    path: web::Path<String>,
     follow: web::Json<Follow>,
 ) -> HttpResponse {
 
@@ -306,7 +306,7 @@ pub async fn create_tweet(
 
 pub async fn update_tweet(
     api_handler: web::Data<TwitterLikeAPIHandler>,
-    path: web::Path<(String)>,
+    path: web::Path<String>,
     tweet: web::Json<Tweet>,
 ) -> HttpResponse {
    // The first step is to extract the tweet ID from the path object and the updated tweet data from the tweet object.
@@ -341,7 +341,7 @@ pub async fn update_tweet(
 // The function returns a HttpResponse object indicating the result of the request.
 pub async fn delete_tweet(
     api_handler: web::Data<TwitterLikeAPIHandler>,
-    path: web::Path<(String)>,
+    path: web::Path<String>,
 ) -> HttpResponse {
     // The first step is to extract the tweet ID from the path object.
      let tid = path.into_inner();
@@ -370,7 +370,7 @@ pub async fn delete_tweet(
 // The function returns a HttpResponse object indicating the result of the request.
 pub async fn create_comment(
     api_handler: web::Data<TwitterLikeAPIHandler>,
-    path: web::Path<(String)>,
+    path: web::Path<String>,
     comment: web::Json<Comment>,
   ) -> HttpResponse {
    // The first step is to extract the tweet ID from the path object and the comment data from the comment object.
@@ -406,7 +406,7 @@ pub async fn create_comment(
 // The function returns a HttpResponse object indicating the result of the request.
 pub async fn update_comment(
     api_handler: web::Data<TwitterLikeAPIHandler>,
-    path: web::Path<(String)>,
+    path: web::Path<String>,
     comment: web::Json<Comment>,
 ) -> HttpResponse {
     // The first step is to extract the comment ID from the path object and the updated comment data from the comment object.
@@ -440,7 +440,7 @@ pub async fn update_comment(
 // The function returns a HttpResponse object indicating the result of the request.
 pub async fn delete_comment(
     api_handler: web::Data<TwitterLikeAPIHandler>,
-    path: web::Path<(String)>,
+    path: web::Path<String>,
 ) -> HttpResponse {
     // The first step is to extract the comment ID from the path object.
     let cid = path.into_inner();

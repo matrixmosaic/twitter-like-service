@@ -148,12 +148,12 @@ impl TwitterLikeAPI {
 },
 
 
-            Endpoint::UnfollowUser { follower_id, followee_id } => todo!(),
-            Endpoint::CreateComment { tweet_id, user_id, body } => todo!(),
+            Endpoint::UnfollowUser { follower_id: _, followee_id: _ } => todo!(),
+            Endpoint::CreateComment { tweet_id: _, user_id: _, body: _ } => todo!(),
             Endpoint::DeleteComment(_) => todo!(),
-            Endpoint::UpdateComment { id, body } => todo!(),
+            Endpoint::UpdateComment { id: _, body: _ } => todo!(),
             Endpoint::DeleteTweet(_) => todo!(),
-            Endpoint::UpdateTweet { id, body } => todo!(),
+            Endpoint::UpdateTweet { id: _, body: _ } => todo!(),
         }
     }
 }
