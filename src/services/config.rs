@@ -24,7 +24,7 @@ pub mod service_config{
         // This route registers the get_follows, follow_user, and unfollow_user handlers for the "/follows/{uid}" resource.
         // The get_follows handler will handle GET requests, the follow_user handler will handle POST requests, and the unfollow_user handler will handle DELETE requests.
         cfg.service(
-            web::resource("/follows/{uid}")
+            web::resource("/user/{uid}/follows")
                 .route(web::get().to(get_follows))
                 .route(web::post().to(follow_user))
                 .route(web::delete().to(unfollow_user)),

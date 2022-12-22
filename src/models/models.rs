@@ -33,13 +33,13 @@ pub struct User {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Tweet {
     // a unique identifier for the tweet, represented as a String
-    //pub tweet_id: String,
+     pub tweet_id: Option<String>,
     // the user's ID for the user who made the tweet
     pub user_id: String,
     // the tweet's body text
     pub body: String,
     // the date and time the tweet was created, represented as a NaiveDateTime
-    //pub created_at: NaiveDateTime,
+    pub created_at: Option<NaiveDateTime>,
 }
 
 //The Follow struct represents a following relationship between two users in a Twitter-like API.  
@@ -50,7 +50,7 @@ pub struct Follow {
     // ID of the user being followed
     pub followee_id: String, 
     // timestamp for when the follow relationship was created
-    pub created_at: NaiveDateTime, 
+    pub created_at: Option<NaiveDateTime>, 
 }
 
 // A struct representing a comment in a Twitter-like API

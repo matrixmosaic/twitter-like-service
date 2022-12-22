@@ -105,17 +105,17 @@ impl TwitterLikeAPI {
             let uuid_string = uuid.to_string();
 
             // Get the current date and time in the UTC time zone.
-            // let now = Utc::now();
+             let now = Utc::now();
             // Convert the date and time to a `NaiveDateTime` object.
-            // let naive_now = now.naive_utc();
+             let naive_now = now.naive_utc();
 
             // Create a new `Tweet` struct using the provided `user_id` and `body` values,
             // the generated UUID, and the current date and time and insert into the map.
             self.tweets.insert(uuid_string.clone(), Tweet {
-            //tweet_id: uuid_string,
+            tweet_id: Some(uuid_string),
             user_id,
             body,
-           // created_at: naive_now,
+           created_at: Some(naive_now),
     });
     // Return a `ResultType::Success` value to indicate that the request was successful.
     Ok(ResultType::Success)
@@ -134,7 +134,7 @@ impl TwitterLikeAPI {
           self.follows.insert((follower_id.clone(), followee_id.clone()), Follow {
              follower_id,
              followee_id, 
-              created_at: naive_now,
+              created_at: Some(naive_now),
     });
     // Return a `ResultType::Success` value to indicate that the request was successful.
     Ok(ResultType::Success)
