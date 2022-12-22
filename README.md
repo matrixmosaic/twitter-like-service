@@ -10,6 +10,50 @@ The Twitter-like service is a web-based mvp application that allows users to cre
 
 The Twitter-like application system architecture exposes a set of APIs(RESTful-like JSON API endpoints) that allow developers to access the functionality and data of the service. The APIs are designed to be easy to use and allow to Create an user, Create a tweet, Get a user tweet feed, Follow and Unfollow another user.
 
+## Building And Running The Application
+
+### Building And Running The Application( Without a container ).
+0. Clone the application at [https://github.com/matrixmosaic/twitter-like-service.git](https://github.com/matrixmosaic/twitter-like-service.git).
+
+1. First, install Rust by following the instructions on the official
+    website: https://www.rust-lang.org/tools/install    
+    
+2.  Once Rust is  installed, navigate inside the  project folder( default folder is twitter-like-service )  
+3.  You can build the project using the following command:
+   
+   `cargo build`
+
+This will compile the project and create an executable file in the `target/debug` directory.
+
+4.  To run the project, use the following command:
+
+    `cargo run`
+
+This will build the project (if it has not already been built) and then run the executable.
+
+This will also start the applicalion web server and bind it to the host's port 8080. You can then access the application by visiting [http://localhost:8080](http://localhost:8080/) in your web browser.
+
+
+You can also use the `--release` flag when building or running the project to create an optimized release build.
+
+cargo build --release cargo run --release
+
+  
+
+  ### Building And Running With Docker
+  0. Clone the application at [https://github.com/matrixmosaic/twitter-like-service.git](https://github.com/matrixmosaic/twitter-like-service.git)
+  1. Make sure the target machine has Docker already installed.
+  2. Navigate inside the  project folder( default folder is twitter-like-service )  
+  3. To build the Docker image, you can run the following command:
+
+  `docker build -t twitter-like-service .`
+  
+  4. To start a Docker container based on the image, you can run the following command:
+  `docker run -p 8080:8080 twitter-like-service`
+
+  This will start a new container running your Rust application, and bind the container's port 8080 to the host's port 8080. You can then access the application by visiting [http://localhost:8080](http://localhost:8080/) in your web browser.
+
+
 ## Data Model
 In our Twitter-like service , for the MVP purposes we have implemented four basic entities.
 
