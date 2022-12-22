@@ -11,21 +11,21 @@ pub struct User {
     // unique ID for the user
     pub uid: String, 
     // email address of the user
-    pub email :String, 
+    //pub email :String, 
     // first name of the user
-    pub first_name :String, 
+    //pub first_name :String, 
     // last name of the user
-    pub last_name :String, 
+    //pub last_name :String, 
     // second name of the user 
-    pub second_name :String, 
+    //pub second_name :String, 
     // username of the user
-    pub user_name :String, 
+    //pub user_name :String, 
     // password of the user (hashed and salted for security)
-    pub password :String, 
+   // pub password :String, 
     // phone number of the user
-    pub phone :String, 
+   // pub phone :String, 
     // gender of the user
-    pub gender :String 
+   // pub gender :String 
    }
 
 
